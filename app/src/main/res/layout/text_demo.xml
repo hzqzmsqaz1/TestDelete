@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewmodel"
+            type="com.databinding.demo.mViewModel"/>
+        <variable
+            name="listener"
+            type="com.databinding.demo.DataDindingActivity.Listener"/>
+        <variable
+            name="index"
+            type="int"/>
+
+    </data>
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<EditText
+    android:id="@+id/firstname"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onTextChanged="@{listener::onTextChangedOne}"
+    android:hint="请输入姓"/>
+    <!--这里的listener后面就不能用::代替. -->
+    <EditText
+        android:id="@+id/lastname"
+        android:layout_width="match_parent"
+        android:onTextChanged="@{()->listener.onTextChangedTwo()}"
+        android:layout_height="wrap_content"
+        android:hint="请输入名"/>
+    <TextView
+        android:id="@+id/show1text"
+        android:onClick="@{listener.onClicked}"
+        android:text="@{viewmodel.fistname}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/show2text"
+  android:text="@{viewmodel.lastname}"
+        android:background="#f00"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/show3text"
+        android:text="@{String.valueOf(index)}"
+        android:background="#f00"
+        android:gravity="center"
+android:visibility="@{viewmodel.istrue?View.GONE:View.VISIBLE}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+    <!--必须外面单引号里面双引号，反过来无法显示-->
+    <TextView
+        android:id="@+id/show4text"
+        android:text='@{viewmodel.user["w"]}'
+        android:background="#f00"
+        android:gravity="center"
+        android:visibility="@{viewmodel.obflag?View.GONE:View.VISIBLE}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+</LinearLayout>
+</layout>
