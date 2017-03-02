@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private final static String IMGURL = "http://p1.sinaimg.c7600/180/61131420601459";
     ListView list;
     Button mBut;
-    int count = 0;
-
     ProgressDialog p;
     Handler h = new Handler();
     RecyclerView recy;
@@ -150,8 +148,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 //});
-
-
 /**
  * volley获取图片，信息，直接执行在主线程
  */
@@ -193,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                                         System.out.println("第一种宽" + op.outWidth + ":高" + op.outHeight);
                                         op.inJustDecodeBounds = false;
                                         op.inPurgeable = true;
-
                                         op.inInputShareable = true;
                                         mbit = BitmapFactory.decodeFile(file.getAbsolutePath(), op);
                                         System.out.println("第一种宽" + mbit.getWidth()
@@ -364,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 版本比较方法测试
+     *
      * @param context
      * @param VersionUrl
      */
@@ -389,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                     super.onFailure(statusCode, headers, responseString, throwable);
